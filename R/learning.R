@@ -72,3 +72,76 @@ nhanes_small %>%
   select(phys_active) %>%
   rename(physically_active = phys_active)
 # piping put in 1st position aka dataset in there and then, read it how you would see it, easier
+nhanes_small %>%
+  select(bp_sys_ave, education)
+nhanes_small %>%
+  rename(
+    bp_sys = bp_sys_ave,
+    bp_dia = bp_dia_ave
+  )
+nhanes_small %>%
+  select(bmi, contains("age"))
+# excersie 7.8 3)
+nhanes_small %>%
+  rename(bp_systolic = bp_sys_ave)
+rlang::last_error()
+rlang::last_trace()
+
+# Filtering rows ----------------------------------------------------------
+
+nhanes_small %>%
+  filter(phys_active == "No")
+# keeps everybody that isnt physical active, "==" keep
+nhanes_small %>%
+  filter(phys_active != "No")
+# "!=" not equal to
+nhanes_small %>%
+  filter(bmi == 25)
+# every bmi thats equal 25
+nhanes_small %>%
+  filter(bmi >= 25 & phys_active == "No")
+# bmi equal or grather 25 and no physical activiy, by default using comma as "and"
+nhanes_small %>%
+  filter(bmi == 25 | phys_active == "No")
+# "|" means OR ; be careful around OR
+
+
+# Arranging rows ----------------------------------------------------------
+
+nhanes_small %>%
+  arrange(desc(age))
+# arrage is select, desc to see oldest
+nhanes_small %>%
+  arrange(desc(age), bmi)
+# arrange/sorting rows usually only sort by 1 or 2 variables; least used of the functions
+
+# Mutating columns --------------------------------------------------------
+
+nhanes_small %>%
+  mutate(age = age * 12)
+# what you want to mutate an exciting column, but you can rename it something that doesn't exsist yet see next
+nhanes_small %>%
+  mutate(age_month = age * 12)
+# to create new column
+nhanes_small %>%
+  mutate(age_month = age * 12, logged_bmi = log(bmi))
+# with a comma can add as many as we want --> what to do multiple calculations at once
+nhanes_small %>%
+  mutate(
+    age_month = age * 12,
+    logged_bmi = log(bmi),
+    age_weeks = age_month * 4
+  )
+# does it sequ, so it will be abkle to do them both
+nhanes_small %>%
+  mutate(
+    age_month = age * 12,
+    logged_bmi = log(bmi),
+    age_weeks = age_month * 4,
+    old = if_else(
+      age >= 30,
+      "old",
+      "young"
+    )
+  )
+# to distinglish btw old and young
