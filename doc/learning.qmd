@@ -4,6 +4,24 @@ author: "Olivia Klatt"
 format: html
 ---
 
+- Olivia KLatt
+- SciLifeLab
+
+# Intro
+This is the **Introduction** *section*.
+
+# Methods and Results 
+## Analysis
+This is the **Analysis** under *Methods* and Results
+
+# Discussion
+This is the **Discussion** *part*
+
+```{r}
+2 + 2
+```
+
+
 ```{r setup}
 #| include: false
 library(tidyverse)
