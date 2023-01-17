@@ -3,3 +3,41 @@ title: "Reproducible documents"
 author: "Olivia Klatt"
 format: html
 ---
+
+```{r setup}
+#| include: false
+library(tidyverse)
+nhanes_small <- read_csv(here::here("data/nhanes_small.csv"))
+```
+
+## Table of results
+
+```{r mean-age-bmi-table}
+#| echo: false
+#| warning: false
+#| message: false
+nhanes_small %>%
+  filter(!is.na(diabetes)) %>%
+  group_by(
+    diabetes,
+    education
+  ) %>%
+  summarize(
+    max_bmi = max(bmi,
+      na.rm = TRUE
+    ),
+    min_bmi = min(bmi,
+      na.rm = TRUE
+    )
+  ) %>%
+ungroup() %>% 
+    knitr::kable(caption = "Mean values of Age and BMI for each diabetes and education status")
+```
+
+
+to put in code use code chunk, can always only have 1 r setup so you dont need to reload packages all the time, hashtag means header so dotn use for comments
+
+
+```{r}
+2 + 2
+```
