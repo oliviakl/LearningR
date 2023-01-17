@@ -87,3 +87,9 @@ nhanes_small %>%
   ) %>%
   knitr::kable(caption = "Mean values of Age and BMI for each education and diabetes status.")
 ```
+
+## Inserting images
+![Cute kitten](images/Kitten.png){#fig-cat}
+
+Cute kitten in @fig-cat
+
