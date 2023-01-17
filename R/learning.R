@@ -189,5 +189,15 @@ nhanes_small %>%
     min_bmi = min(bmi,
       na.rm = TRUE
     )
-  )
+  ) %>%
+ungroup()
 # group_by to use split and combine for diabetes and phys_active
+# always want to end with ungrouping, could mess up later analysis
+
+#save dataset write_csv
+write_csv(
+    nhanes_small,
+    here::here("data/nhances_small.csv")
+)
+# here() function to tell R to go to the project root and then use that file path
+# puts .csv file in the LearningR in data folder
